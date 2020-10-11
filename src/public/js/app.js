@@ -1,5 +1,32 @@
 let canCreate = false;
 $('#provided-url').val('');
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+});
+
+
+function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $('.tooltip').tooltip('dispose');
+    Toast.fire({
+        icon: 'success',
+        title: 'Copied successfully!'
+    })
+    $temp.remove();
+}
+
 $('#shortener-btn').click(async function (e) {
     e.preventDefault();
     if (!canCreate) {
@@ -20,8 +47,32 @@ $('#shortener-btn').click(async function (e) {
         $('#generated-link')
             .html(`<h3>dumas.ir/${shortlink}</h3>`)
             .attr('href', `http://localhost:8080/${shortlink}`);
+        Swal.fire({
+            title: 'Your shortcut link is ready!',
+            html: `<h3 onclick="copyToClipboard('#created-link')" id="created-link" data-placement="top" data-toggle="tooltip" title="Click and copy">dumas.ir/${shortlink}</h3>`,
+            icon: 'success',
+            focusConfirm: false,
+            confirmButtonText: '<i class="fas fa-copy fa-2x"></i>',
+            didOpen: function () {
+                $('.swal2-confirm').tooltip({
+                    placement: 'right',
+                    title: 'Click and copy',
+                    trigger: 'hover'
+                }).click(function (e) {
+                    copyToClipboard('#created-link');
+                });
+            }
+        });
+        $('[data-toggle="tooltip"]').tooltip();
     } catch (error) {
         console.log(error);
+    }
+});
+
+$('#provided-url').keyup(function (event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        $('#shortener-btn').click();
     }
 });
 
