@@ -46,7 +46,7 @@ $('#shortener-btn').click(async function (e) {
         const { shortlink } = await res.json();
         $('#generated-link')
             .html(`<h3>dumas.ir/${shortlink}</h3>`)
-            .attr('href', `http://localhost:8080/${shortlink}`);
+            .attr('href', `https://dumas.ir/${shortlink}`);
         Swal.fire({
             title: 'Your shortcut link is ready!',
             html: `<h3 onclick="copyToClipboard('#created-link')" id="created-link" data-placement="top" data-toggle="tooltip" title="Click and copy">dumas.ir/${shortlink}</h3>`,
