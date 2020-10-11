@@ -3,8 +3,8 @@ import ApiController from '../../controller/api';
 
 const ApiRouter = Router();
 
-ApiRouter.post('/shortener', ApiController.createLink);
+ApiRouter.get('/:url', ApiController.redirectLink);
 
-ApiRouter.get('/?url', ApiController.redirectLink);
+ApiRouter.post('/shortener', ApiController.createLink);
 
 export default ApiRouter;
