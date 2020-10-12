@@ -69,7 +69,7 @@ $('#shortener-btn').click(async function (e) {
             }),
             redirect: 'follow'
         });
-        const { shortlink } = await res.json();
+        const { shortLink } = await res.json();
         $('#generated-link')
             .html(`<h3>dumas.ir/${shortlink}</h3>`)
             .attr('href', `https://dumas.ir/${shortlink}`);
