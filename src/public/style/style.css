@@ -1,0 +1,74 @@
+.submitBtn {
+    width: 65px;
+    color: white;
+    height: 65px;
+    border-radius: 50%;
+    background: rgb(0,119,194);
+    background: linear-gradient(50deg, rgba(0,119,194,1) 0%, rgba(128,214,255,1) 100%);
+    margin: 0rem 0.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.search-bar {
+    animation: barAnimationOut 0.5s ease;
+    width: 330px;
+    height: 75px;
+    border-radius: 40px;
+    background: rgb(207,216,220);
+    background: linear-gradient(149deg, rgba(207,216,220,1) 0%, rgba(255,255,255,1) 100%);
+    display: flex;
+    align-items: center;
+    padding: 0px 2.5px;
+    -webkit-box-shadow: -4px 62px 123px -27px rgba(0,0,0,0.58);
+    -moz-box-shadow: -4px 62px 123px -27px rgba(0,0,0,0.58);
+    box-shadow: -4px 62px 123px -27px rgba(0,0,0,0.58);
+}
+input[type="text"].after {
+    animation: textfieldIn 0.7s;
+    width: 230px;
+    height: 45px;
+    background: transparent;
+    color: #263238;
+    border: none;
+    outline: none;
+    margin: 0rem 0.2rem;
+    font-size: 19px;
+}
+.max-width-800 {
+    max-width: 800px;
+}
+.full-height-centered {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.toastbar {
+    position: absolute;
+    bottom: 20px;
+    width: 330px;
+}
+/* Ripple effect */
+.ripple {
+    background-position: center;
+    transition: background 0.8s;
+}
+.ripple:hover {
+    background: rgb(207,216,220);
+}
+.ripple:active {
+    background: rgb(207,216,220);
+    background-size: 100%;
+    transition: background 0s;
+}
+.error {
+    font-family: 'Pacifico', cursive;
+    color: white;
+    font-size: 12rem;
+}
+.sub-error {
+    font-family: 'Chilanka', cursive;
+}
