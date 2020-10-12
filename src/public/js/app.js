@@ -23,7 +23,6 @@ async function registerSW() {
     }
 }
 window.addEventListener('load', (e) => {
-    new CURLApp();
     registerSW();
 });
 
@@ -71,11 +70,11 @@ $('#shortener-btn').click(async function (e) {
         });
         const { shortLink } = await res.json();
         $('#generated-link')
-            .html(`<h3>dumas.ir/${shortlink}</h3>`)
-            .attr('href', `https://dumas.ir/${shortlink}`);
+            .html(`<h3>dumas.ir/${shortLink}</h3>`)
+            .attr('href', `https://dumas.ir/${shortLink}`);
         Swal.fire({
             title: 'Your shortcut link is ready!',
-            html: `<h3 onclick="copyToClipboard('#created-link')" id="created-link" data-placement="top" data-toggle="tooltip" title="Click and copy">dumas.ir/${shortlink}</h3>`,
+            html: `<h3 onclick="copyToClipboard('#created-link')" id="created-link" data-placement="top" data-toggle="tooltip" title="Click and copy">dumas.ir/${shortLink}</h3>`,
             icon: 'success',
             focusConfirm: false,
             confirmButtonText: '<i class="fas fa-copy fa-2x"></i>',
