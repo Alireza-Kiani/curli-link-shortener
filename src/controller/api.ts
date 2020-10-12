@@ -3,6 +3,7 @@ import CRS from 'crypto-random-string';
 import validator from 'validator';
 import Error from '../utils/error-handler';
 import ApiService from './service';
+import {RedisData} from "../types/redis";
 
 const { API_VERSION } = process.env;
 
@@ -22,20 +23,20 @@ class ApiController {
         }        
     }
 
-    redirectLink: RequestHandler = async (req, res, next) => {
+    redirectLink: RequestHandler = async (req, res) => {
         try {
             const { url } = req.params;
-            //TODO refactoring received object from redis
-            let foundLink: string = await ApiService.getValue(API_VERSION!, url);           
-            if (foundLink === null) {
+            const redisResponse: RedisData = await ApiService.getValue(API_VERSION!, url);
+            if (!redisResponse) {
                 throw new Error('Couldn\'t find any URL under the provided link');
-                //TODO checking if url exits on mongo
             }
+            let foundLink = redisResponse.link;
             if (!/http:\/\/|https:\/\//gi.test(foundLink)) {
                 foundLink = `https://${foundLink}`;
             }
             return res.status(301).redirect(`${foundLink}`);
         } catch (error) {
+            console.log(error)
             return res.status(400).send(error);
         }
     }
