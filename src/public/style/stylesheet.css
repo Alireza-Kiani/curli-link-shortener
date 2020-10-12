@@ -16,6 +16,17 @@ body {
     ;
 }
 
+@media only screen and (max-width: 600px) {
+  .header-title {
+    font-size: 2rem;
+  }
+
+  input[type=text] {
+      font-size: 1rem;
+      padding: 8px 12px;
+  }
+}
+
 .main {
     width: 60vw;
 }
@@ -81,10 +92,19 @@ button:hover {
     ;
 }
 
+button:focus {
+    outline:0;
+}
+
 button::-moz-focus-inner {
   border: 0;
 }
 
+a, a:visited, a:active {
+    color: white;
+} 
+
 a:hover {
+    color: white;
     text-decoration: none;
 }
