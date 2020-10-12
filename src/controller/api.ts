@@ -15,8 +15,8 @@ class ApiController {
                 throw new Error('Please provide a valid URL');
             }
             const randomUniqueLink = CRS({ length: 5 });
-            ApiService.setValue(API_VERSION!, randomUniqueLink, link);
-            return res.status(200).send({ shortlink: randomUniqueLink });
+            await ApiService.setValue(API_VERSION!, randomUniqueLink, {link, date: new Date()});
+            return res.status(200).send({ shortLink: randomUniqueLink });
         } catch (error) {
             return res.status(400).send(error);
         }        
@@ -25,9 +25,11 @@ class ApiController {
     redirectLink: RequestHandler = async (req, res, next) => {
         try {
             const { url } = req.params;
+            //TODO refactoring received object from redis
             let foundLink: string = await ApiService.getValue(API_VERSION!, url);           
             if (foundLink === null) {
                 throw new Error('Couldn\'t find any URL under the provided link');
+                //TODO checking if url exits on mongo
             }
             if (!/http:\/\/|https:\/\//gi.test(foundLink)) {
                 foundLink = `https://${foundLink}`;
@@ -37,7 +39,6 @@ class ApiController {
             return res.status(400).send(error);
         }
     }
-
 }
 
 export default (new ApiController());

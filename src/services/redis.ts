@@ -18,16 +18,15 @@ class Redis {
     }
 
     public async hget(hkey: string, key: string): Promise<string> {       
-        const savedValue = await this._async_redis_connection.hgetAsync(hkey, key);        
+        const savedValue = await this._async_redis_connection.hgetAsync(hkey, key);
+        //TODO return json.parse
         return savedValue;
     }
     
-    public async hset(hkey: string, key: string, value: any): Promise<void> {
-        if (typeof value !== 'string') {
-            value = JSON.stringify(value);
-        }
-        const setValue = await this._async_redis_connection.hsetAsync([hkey, key, value]);
-    } 
+    public async hset(hkey: string, key: string, input: {link: string, date: Date}): Promise<void> {
+        const value = JSON.stringify(input);
+        await this._async_redis_connection.hsetAsync([hkey, key, value]);
+    }
 }
 
 export default (new Redis());
