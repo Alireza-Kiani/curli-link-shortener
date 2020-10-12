@@ -1,5 +1,6 @@
 import { RedisClient } from 'redis';
 import { promisify } from 'util';
+import {RedisData} from "../types/redis";
 
 class AsyncRedis extends RedisClient {
     public readonly hgetAsync = promisify(this.hget).bind(this);
@@ -17,17 +18,15 @@ class Redis {
         });
     }
 
-    public async hget(hkey: string, key: string): Promise<string> {       
-        const savedValue = await this._async_redis_connection.hgetAsync(hkey, key);        
-        return savedValue;
+    public async hget(hkey: string, key: string): Promise<RedisData> {
+        const savedValue = await this._async_redis_connection.hgetAsync(hkey, key);
+        return JSON.parse(savedValue);
     }
     
-    public async hset(hkey: string, key: string, value: any): Promise<void> {
-        if (typeof value !== 'string') {
-            value = JSON.stringify(value);
-        }
-        const setValue = await this._async_redis_connection.hsetAsync([hkey, key, value]);
-    } 
+    public async hset(hkey: string, key: string, input: RedisData): Promise<void> {
+        const value = JSON.stringify(input);
+        await this._async_redis_connection.hsetAsync([hkey, key, value]);
+    }
 }
 
 export default (new Redis());
