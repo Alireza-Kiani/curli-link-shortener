@@ -23,10 +23,10 @@ class ApiController {
         }        
     }
 
-    redirectLink: RequestHandler = async (req, res) => {
+    redirectLink: RequestHandler = async (req, res, next) => {
         try {
             const { url } = req.params;
-            const redisResponse: RedisData = await ApiService.getValue(API_VERSION!, url);
+            const redisResponse: RedisData = await ApiService.getValue(API_VERSION!, url);            
             if (!redisResponse) {
                 throw new Error('Couldn\'t find any URL under the provided link');
             }
@@ -37,7 +37,8 @@ class ApiController {
             return res.status(301).redirect(`${foundLink}`);
         } catch (error) {
             console.log(error)
-            return res.status(400).send(error);
+            // return res.status(400).send(error);
+            return next();
         }
     }
 }

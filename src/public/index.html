@@ -5,10 +5,16 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="CURLi">
+    <link rel="apple-touch-icon" href="/images/icons/favicon-blue.png">
+    <link rel="manifest" href="./pwa/manifest.webmanifest">
+    <link rel="icon" type="image/png" href="./images/favicon-blue.png" sizes="192x192">
     <title>Curli.ir - URL shortener</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <link rel="stylesheet" href="Assets/styles/clouds.css">
-    <link rel="stylesheet" href="Assets/styles/style.css">
+    <link rel="stylesheet" href="./style/clouds.css">
+    <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
@@ -16,7 +22,7 @@
     <label class="max-width-800">
         <div class="search-bar" :class="{'animate__animated animate__pulse': !validUrl}">
             <div class="submitBtn" @click="shorten">
-                <img src="Assets/images/tail-spin.svg" alt="spinner-loader" v-if="fetching">
+                <img src="./images/tail-spin.svg" alt="spinner-loader" v-if="fetching">
                 <i class="fa fa-cut fa-lg" v-else="fetching"></i>
             </div>
             <input
@@ -55,7 +61,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.1.17/validator.min.js"></script>
-<script src="Assets/scripts/functions.js"></script>
+<script src="./js/functions.js"></script>
 <script src="https://kit.fontawesome.com/d5cc1044db.js"></script>
 </body>
 </html>

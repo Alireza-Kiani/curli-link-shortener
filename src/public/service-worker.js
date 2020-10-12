@@ -4,9 +4,11 @@ const staticAssets = [
     './images/favicon-blue.png',
     './images/favicon-white.png',
     './images/favicon.png',
+    './images/tail-spin.svg',
     './index.html',
-    './js/app.js',
-    './style/stylesheet.css'
+    './js/functions.js',
+    './style/clouds.css',
+    './style/style.css'
 ];
 
 async function cacheFirst(req) {

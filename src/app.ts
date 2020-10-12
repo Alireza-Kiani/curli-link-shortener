@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import Central from './routes/center';
+import NotFound from './middlewares/404';
 
 const Express = express();
 // const { API_VERSION } = process.env;
@@ -16,6 +17,8 @@ Express.use(cors({
 Express.use(express.json());
 
 Express.use(Central);
+
+Express.use(NotFound);
 
 
 export default Express;
