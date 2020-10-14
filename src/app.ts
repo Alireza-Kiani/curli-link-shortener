@@ -1,16 +1,11 @@
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
-import helmet from 'helmet';
 import Central from './routes/center';
 import NotFound from './middlewares/404';
 
 const Express = express();
 // const { API_VERSION } = process.env;
-
-Express.set('trust proxy', 1);
-
-// Express.use(helmet());
 
 Express.use(express.static(path.join(__dirname, './public')));
 
