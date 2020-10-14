@@ -1,3 +1,6 @@
+html {
+    overflow-y: hidden;
+}
 .submitBtn {
     width: 65px;
     color: white;
@@ -71,4 +74,7 @@ input[type="text"].after {
 }
 .sub-error {
     font-family: 'Chilanka', cursive;
+}
+.link-decoration {
+    text-decoration: none;
 }
