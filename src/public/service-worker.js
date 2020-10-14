@@ -1,13 +1,10 @@
 const cacheName = 'curli-v1';
 const staticAssets = [
-    './',
     './images/favicon-blue.png',
     './images/favicon-white.png',
     './images/favicon.png',
     './images/tail-spin.svg',
-    './index.html',
     './404.html',
-    './js/functions.js',
     './style/clouds.css',
     './style/style.css'
 ];
