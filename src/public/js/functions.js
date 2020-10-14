@@ -54,9 +54,9 @@ const app = new Vue({
             if (this.shortenedLink !== null) {
                 const tempInput = document.createElement('input')
                 tempInput.setAttribute('id', 'temp')
-                tempInput.setAttribute('value', this.shortenedLink)
+                tempInput.setAttribute('value', `https://${this.shortenedLink}`)
                 // tempInput.style.display = 'none'
-                tempInput.value = this.shortenedLink
+                tempInput.value = `https://${this.shortenedLink}`
                 document.body.appendChild(tempInput)
                 tempInput.select()
                 document.execCommand('copy')
