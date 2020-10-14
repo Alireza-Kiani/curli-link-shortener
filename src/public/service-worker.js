@@ -6,6 +6,7 @@ const staticAssets = [
     './images/favicon.png',
     './images/tail-spin.svg',
     './index.html',
+    './404.html',
     './js/functions.js',
     './style/clouds.css',
     './style/style.css'
