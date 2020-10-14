@@ -4,6 +4,7 @@ import validator from 'validator';
 import Error from '../utils/error-handler';
 import ApiService from './service';
 import {RedisData} from "../types/redis";
+import fetch from "node-fetch"
 
 const { API_VERSION } = process.env;
 
@@ -26,11 +27,19 @@ class ApiController {
     redirectLink: RequestHandler = async (req, res, next) => {
         try {
             const { url } = req.params;
-            const redisResponse: RedisData = await ApiService.getValue(API_VERSION!, url);            
+            let foundLink = null;
+            const redisResponse: RedisData = await ApiService.getValue(API_VERSION!, url);
             if (!redisResponse) {
-                throw new Error('Couldn\'t find any URL under the provided link');
+                const response = await fetch(`http://curli.ir:8081/${url}`);
+                const link = await response.json();
+                if (!link.originalLink) {
+                    throw new Error('Couldn\'t find any URL under the provided link');
+                } else {
+                    foundLink = link.originalLink
+                }
+            } else {
+                foundLink = redisResponse.link;
             }
-            let foundLink = redisResponse.link;
             if (!/http:\/\/|https:\/\//gi.test(foundLink)) {
                 foundLink = `https://${foundLink}`;
             }
