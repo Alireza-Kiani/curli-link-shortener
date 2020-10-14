@@ -1,6 +1,6 @@
 import {RedisClient} from 'redis';
 import {promisify} from 'util';
-import {RedisData} from "../types/redis";
+import {RedisData} from "../@types/redis";
 
 class AsyncRedis extends RedisClient {
     public readonly hgetAsync = promisify(this.hget).bind(this);

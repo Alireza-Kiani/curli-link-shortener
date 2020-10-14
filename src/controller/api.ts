@@ -3,7 +3,7 @@ import CRS from 'crypto-random-string';
 import validator from 'validator';
 import Error from '../utils/error-handler';
 import ApiService from './service';
-import {RedisData} from "../types/redis";
+import {RedisData} from "../@types/redis";
 import fetch from "node-fetch"
 
 const { API_VERSION } = process.env;

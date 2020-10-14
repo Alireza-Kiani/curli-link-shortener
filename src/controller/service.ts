@@ -1,5 +1,5 @@
 import Redis from '../services/redis';
-import {RedisData} from "../types/redis";
+import {RedisData} from "../@types/redis";
 
 class ApiService {
     
