@@ -47,7 +47,7 @@ const app = new Vue({
                 })
                 const result = await response.json()
                 this.fetching = false
-                this.shortenedLink = 'https://dumas.ir/' + result.shortLink
+                this.shortenedLink = 'curli.ir/' + result.shortLink
             }
         },
         copyToClipBoard () {
