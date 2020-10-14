@@ -8,9 +8,9 @@ import NotFound from './middlewares/404';
 const Express = express();
 // const { API_VERSION } = process.env;
 
-// Express.set('trust proxy', 1);
+Express.set('trust proxy', 1);
 
-Express.use(helmet());
+// Express.use(helmet());
 
 Express.use(express.static(path.join(__dirname, './public')));
 
