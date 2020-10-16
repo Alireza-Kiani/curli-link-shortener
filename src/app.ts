@@ -2,11 +2,13 @@ import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import helmet from 'helmet';
+import Useragent from 'express-useragent';
 import Central from './routes/center';
 import NotFound from './middlewares/404';
 
 const Express = express();
-// const { API_VERSION } = process.env;
+
+Express.use(Useragent.express());
 
 Express.use(express.static(path.join(__dirname, './public')));
 
@@ -22,6 +24,7 @@ Express.use(cors({
 Express.use(express.json());
 
 Express.use((req, res, next) => {
+    console.log(req.useragent);
 	console.log(req.ip);
     next();
 });
