@@ -16,7 +16,7 @@ class ApiController {
             if (!validator.isURL(link)) {
                 throw new Error('Please provide a valid URL');
             }
-            const raw_res_save = await fetch('http://curli.ir:8083/set', {
+            const raw_res_save = await fetch(`http://curli.ir:8083/api/v${API_VERSION}/set`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
