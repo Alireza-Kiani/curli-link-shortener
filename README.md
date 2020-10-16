@@ -1,5 +1,5 @@
 # link-shortener
----
-Project currently available on [dumas.ir](https://dumas.ir)
 
-Project is under development
+Project currently available on [curli.ir](https://curli.ir)
+
+*Under development*
