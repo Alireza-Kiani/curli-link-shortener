@@ -1,6 +1,4 @@
 import Express from './app';
-import "./services/cronjob";
-
 
 const { PORT } = process.env;
 
