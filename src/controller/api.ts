@@ -38,7 +38,7 @@ class ApiController {
             const { url } = req.params;
             let foundLink: null | string = null;
             // New strategy
-            const redis_raw_response = await fetch(`http://curli.ir:8083/${url}`);
+            const redis_raw_response = await fetch(`http://curli.ir:8083/api/v${API_VERSION}/${url}`);
             if (redis_raw_response.status === 200) {
                 const parsed_redis_response = await redis_raw_response.json();
                 foundLink = parsed_redis_response.originalLink;
