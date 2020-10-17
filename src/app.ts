@@ -38,7 +38,10 @@ Express.use((req, res, next) => {
                 'content-type': 'application/json'
             },
             redirect: 'follow'
-        });
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
     } catch (e) {
         console.log(e);
     } finally {
