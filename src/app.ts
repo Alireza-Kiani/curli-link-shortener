@@ -19,37 +19,38 @@ Express.set('trust proxy', true);
 
 Express.use(helmet());
 
-Express.use(cors({
-    origin: /\:3000$/,
-    credentials: true
-}));
+Express.use(
+	cors({
+		origin: /:3000$/,
+		credentials: true,
+	})
+);
 
 Express.use(express.json());
 
 Express.use((req, res, next) => {
-    try {
-        fetch(`http://curli.ir:8082/api/v${API_VERSION}/saveSite`, {
-            method: 'POST',
-            body: JSON.stringify({
-                domain: `curli.ir`,
-                ip: req.ip,
-                useragent: req.useragent
-            }),
-            headers: {
-                'content-type': 'application/json'
-            },
-            redirect: 'follow'
-        });
-    } catch (e) {
-        console.log(e);
-    } finally {
-        next();
-    }
+	try {
+		fetch(`http://curli.ir:8082/api/v${API_VERSION}/saveSite`, {
+			method: 'POST',
+			body: JSON.stringify({
+				domain: `curli.ir`,
+				ip: req.ip,
+				useragent: req.useragent,
+			}),
+			headers: {
+				'content-type': 'application/json',
+			},
+			redirect: 'follow',
+		});
+	} catch (e) {
+		console.log(e);
+	} finally {
+		next();
+	}
 });
 
 Express.use(Central);
 
 Express.use(NotFound);
-
 
 export default Express;

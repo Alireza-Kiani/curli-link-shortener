@@ -1,8 +1,8 @@
-export interface Set {
-    shortLink: string;
-}
+export type Set = {
+	shortLink: string;
+};
 
-export interface Get {
-    statusCode: number;
-    originalLink: string;
-}
+export type Get = {
+	statusCode: number;
+	originalLink: string;
+};
