@@ -1,5 +1,6 @@
 import { RequestHandler } from 'express';
 import validator from 'validator';
+import fetch from 'node-fetch';
 import Error from '../utils/error-handler';
 import ApiService from './service';
 
