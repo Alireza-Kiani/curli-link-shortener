@@ -26,9 +26,9 @@ Express.use(cors({
 
 Express.use(express.json());
 
-Express.use((req, res, next) => {
+Express.use(async (req, res, next) => {
     try {
-        fetch(`http://curli.ir:8082/api/v${API_VERSION}/saveSite`, {
+        await fetch(`http://curli.ir:8082/api/v${API_VERSION}/saveSite`, {
             method: 'POST',
             body: JSON.stringify({
                 domain: `curli.ir`,
@@ -39,10 +39,7 @@ Express.use((req, res, next) => {
                 'content-type': 'application/json'
             },
             redirect: 'follow'
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
+        });
     } catch (e) {
         console.log(e);
     } finally {

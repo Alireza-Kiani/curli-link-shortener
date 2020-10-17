@@ -39,7 +39,7 @@ class ApiController {
             if (!/http:\/\/|https:\/\//gi.test(foundLink!)) {
                 foundLink = `https://${foundLink}`;
             }
-            fetch(`http://curli.ir:8082/api/v${API_VERSION}/saveLink`, {
+            await fetch(`http://curli.ir:8082/api/v${API_VERSION}/saveLink`, {
                 method: 'POST',
                 body: JSON.stringify({
                     ip: req.ip,
@@ -50,10 +50,7 @@ class ApiController {
                     'content-type': 'application/json'
                 },
                 redirect: 'follow'
-            })
-            .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.log(err));
+            });
             return res.status(301).redirect(`${foundLink}`);
         } catch (error) {
             console.log(error)
