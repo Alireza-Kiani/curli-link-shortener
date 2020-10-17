@@ -31,6 +31,7 @@ Express.use((req, res, next) => {
         fetch(`http://curli.ir:8082/api/v${API_VERSION}/saveSite`, {
             method: 'POST',
             body: JSON.stringify({
+                domain: `curli.ir`,
                 ip: req.ip,
                 useragent: req.useragent
             }),
