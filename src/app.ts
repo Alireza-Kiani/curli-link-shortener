@@ -26,9 +26,9 @@ Express.use(cors({
 
 Express.use(express.json());
 
-Express.use(async (req, res, next) => {
+Express.use((req, res, next) => {
     try {
-        await fetch(`http://curli.ir:8082/api/v${API_VERSION}/saveSite`, {
+        fetch(`http://curli.ir:8082/api/v${API_VERSION}/saveSite`, {
             method: 'POST',
             body: JSON.stringify({
                 domain: `curli.ir`,
