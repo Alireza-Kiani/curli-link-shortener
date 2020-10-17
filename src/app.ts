@@ -2,11 +2,14 @@ import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import helmet from 'helmet';
+import fetch from 'node-fetch';
 import Useragent from 'express-useragent';
 import Central from './routes/center';
 import NotFound from './middlewares/404';
 
 const Express = express();
+
+const { API_VERSION } = process.env;
 
 Express.use(Useragent.express());
 
@@ -24,9 +27,23 @@ Express.use(cors({
 Express.use(express.json());
 
 Express.use((req, res, next) => {
-    console.log(req.useragent);
-	console.log(req.ip);
-    next();
+    try {
+        fetch(`http://curli.ir:8082/api/v${API_VERSION}/saveSite`, {
+            method: 'POST',
+            body: JSON.stringify({
+                ip: req.ip,
+                useragent: req.useragent
+            }),
+            headers: {
+                'content-type': 'application/json'
+            },
+            redirect: 'follow'
+        });
+    } catch (e) {
+        console.log(e);
+    } finally {
+        next();
+    }
 });
 
 Express.use(Central);

@@ -1,7 +1,9 @@
-import { raw, RequestHandler } from 'express';
+import { RequestHandler } from 'express';
 import validator from 'validator';
 import Error from '../utils/error-handler';
 import ApiService from './service';
+
+const { API_VERSION } = process.env;
 
 class ApiController {
     
@@ -36,6 +38,18 @@ class ApiController {
             if (!/http:\/\/|https:\/\//gi.test(foundLink!)) {
                 foundLink = `https://${foundLink}`;
             }
+            fetch(`http://curli.ir:8082/api/v${API_VERSION}/saveLink`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    ip: req.ip,
+                    useragent: req.useragent,
+                    link: url
+                }),
+                headers: {
+                    'content-type': 'application/json'
+                },
+                redirect: 'follow'
+            });
             return res.status(301).redirect(`${foundLink}`);
         } catch (error) {
             console.log(error)
