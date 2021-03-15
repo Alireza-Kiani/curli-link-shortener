@@ -17,6 +17,7 @@ class ApiController {
             const parsed_res = await ApiService.set(link);
             return res.status(200).send(parsed_res);
         } catch (error) {
+            console.log(error);
             return res.status(400).send(error);
         }        
     }
