@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 import Error from '../utils/error-handler';
 import ApiService from './service';
 
-const { API_VERSION } = process.env;
+const { API_VERSION, MONITORING_SERVICE_PORT } = process.env;
 
 class ApiController {
     
@@ -40,7 +40,7 @@ class ApiController {
                 foundLink = `https://${foundLink}`;
             }
             res.status(301).redirect(`${foundLink}`);
-            await fetch(`http://curli.ir:8082/api/v${API_VERSION}/saveLink`, {
+            await fetch(`http://curli.ir:${MONITORING_SERVICE_PORT}/api/v${API_VERSION}/saveLink`, {
                 method: 'POST',
                 body: JSON.stringify({
                     ip: req.ip,

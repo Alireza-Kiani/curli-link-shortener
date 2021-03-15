@@ -9,7 +9,7 @@ import NotFound from './middlewares/404';
 
 const Express = express();
 
-const { API_VERSION } = process.env;
+const { API_VERSION, MONITORING_SERVICE_PORT } = process.env;
 
 Express.use(Useragent.express());
 
@@ -28,7 +28,7 @@ Express.use(express.json());
 
 Express.use((req, res, next) => {
     try {
-        fetch(`http://curli.ir:8082/api/v${API_VERSION}/saveSite`, {
+        fetch(`http://curli.ir:${MONITORING_SERVICE_PORT}/api/v${API_VERSION}/saveSite`, {
             method: 'POST',
             body: JSON.stringify({
                 domain: `curli.ir`,

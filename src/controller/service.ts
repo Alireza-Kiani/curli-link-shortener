@@ -1,12 +1,12 @@
 import fetch from 'node-fetch';
 import { Set, Get } from '../@types/response';
 
-const { API_VERSION } = process.env;
+const { API_VERSION, REDIS_SERVICE_PORT, ALTERNATIVE_DB_PORT } = process.env;
 
 class ApiService {
 
     async set(link: string): Promise<Set> {
-        const raw_res_save = await fetch(`http://curli.ir:8083/api/v${API_VERSION}/set`, {
+        const raw_res_save = await fetch(`http://curli.ir:${REDIS_SERVICE_PORT}/api/v${API_VERSION}/set`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -21,7 +21,7 @@ class ApiService {
     }
 
     async getRedis(url: string): Promise<Get> {
-        const redis_raw_response = await fetch(`http://curli.ir:8083/api/v${API_VERSION}/${url}`);
+        const redis_raw_response = await fetch(`http://curli.ir:${REDIS_SERVICE_PORT}/api/v${API_VERSION}/${url}`);
         const parsed_redis_response = await redis_raw_response.json();
         return { 
             originalLink: parsed_redis_response.originalLink,
@@ -30,7 +30,7 @@ class ApiService {
     }
 
     async getDb(url: string): Promise<Get> {
-        const alternative_raw_response = await fetch(`http://curli:8081/${url}`);
+        const alternative_raw_response = await fetch(`http://curli:${ALTERNATIVE_DB_PORT}/${url}`);
         const parsed_alternative_response = await alternative_raw_response.json();
         return {
             originalLink: parsed_alternative_response.originalLink,
