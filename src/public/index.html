@@ -459,7 +459,7 @@
                 if (isValidUrl(this.input)) {
                     this.state = 'fetching'
                     try {
-                        const response = await fetch('http://localhost:3000/shortener', {
+                        const response = await fetch('/shortener', {
                             method: 'post',
                             body: JSON.stringify({
                                 link: this.input
