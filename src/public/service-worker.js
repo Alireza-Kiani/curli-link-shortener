@@ -1,4 +1,4 @@
-const cacheName = 'curli-v1';
+const cacheName = 'curli-v2';
 const staticAssets = [
     './js/functions.js',
     './images/favicon-blue.png',
@@ -7,7 +7,9 @@ const staticAssets = [
     './images/tail-spin.svg',
     './404.html',
     './style/clouds.css',
-    './style/style.css'
+    './style/style.css',
+    './style/toggle.css',
+    './style/night.css'
 ];
 
 async function cacheFirst(req) {
