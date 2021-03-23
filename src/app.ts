@@ -2,10 +2,10 @@ import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import helmet from 'helmet';
-import fetch from 'node-fetch';
 import Useragent from 'express-useragent';
 import Central from './routes/center';
 import NotFound from './middlewares/404';
+import monitorMiddleware from './middlewares/monitor';
 
 const Express = express();
 
@@ -26,26 +26,7 @@ Express.use(cors({
 
 Express.use(express.json());
 
-Express.use((req, res, next) => {
-    try {
-        fetch(`http://curli.ir:${MONITORING_SERVICE_PORT}/api/v${API_VERSION}/saveSite`, {
-            method: 'POST',
-            body: JSON.stringify({
-                domain: `curli.ir`,
-                ip: req.ip,
-                useragent: req.useragent
-            }),
-            headers: {
-                'content-type': 'application/json'
-            },
-            redirect: 'follow'
-        });
-    } catch (e) {
-        console.log(e);
-    } finally {
-        next();
-    }
-});
+// Express.use(monitorMiddleware);
 
 Express.use(Central);
 

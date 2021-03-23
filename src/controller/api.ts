@@ -12,7 +12,10 @@ class ApiController {
         try {
             const { link } = req.body;
             if (!validator.isURL(link)) {
-                throw new Error('Please provide a valid URL');
+                throw { code: 400, message: 'Please provide a valid URL' };
+            }
+            if (/^http:\/\/curli.ir|^https:\/\/curli.ir|^curli.ir|^http:\/\/www.curli.ir|^httpS:\/\/www.curli.ir|^www.curli.ir/gi.test(link)) {
+                throw { code: 400, message: 'It\'s already curlied!' };
             }
             const parsed_res = await ApiService.set(link);
             return res.status(200).send(parsed_res);
@@ -41,18 +44,7 @@ class ApiController {
                 foundLink = `https://${foundLink}`;
             }
             res.status(301).redirect(`${foundLink}`);
-            await fetch(`http://curli.ir:${MONITORING_SERVICE_PORT}/api/v${API_VERSION}/saveLink`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    ip: req.ip,
-                    useragent: req.useragent,
-                    link: url
-                }),
-                headers: {
-                    'content-type': 'application/json'
-                },
-                redirect: 'follow'
-            });
+            await ApiService.updateMonitor({ url, ip: req.ip, useragent: req.useragent });
         } catch (error) {
             console.log(error)
             return next();

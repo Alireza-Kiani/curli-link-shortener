@@ -1,7 +1,8 @@
+import { Details } from 'express-useragent';
 import fetch from 'node-fetch';
 import { Set, Get } from '../@types/response';
 
-const { API_VERSION, REDIS_SERVICE_PORT, ALTERNATIVE_DB_PORT } = process.env;
+const { API_VERSION, REDIS_SERVICE_PORT, ALTERNATIVE_DB_PORT, MONITORING_SERVICE_PORT } = process.env;
 
 class ApiService {
 
@@ -36,6 +37,23 @@ class ApiService {
             originalLink: parsed_alternative_response.originalLink,
             statusCode: alternative_raw_response.status
         } as Get;
+    }
+
+    async updateMonitor({ url, ip, useragent }:
+        { url: string, ip: string, useragent: Details | undefined }
+    ): Promise<void> {
+        await fetch(`http://curli.ir:${MONITORING_SERVICE_PORT}/api/v${API_VERSION}/saveLink`, {
+            method: 'POST',
+            body: JSON.stringify({
+                ip: ip,
+                useragent: useragent,
+                link: url
+            }),
+            headers: {
+                'content-type': 'application/json'
+            },
+            redirect: 'follow'
+        });
     }
 
 }
