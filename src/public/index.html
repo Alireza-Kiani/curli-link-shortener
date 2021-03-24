@@ -30,6 +30,7 @@
     <meta name="theme-color" content="#42a5f5">
     <link rel="apple-touch-icon" href="/images/icons/favicon-blue.png">
     <link rel="manifest" href="./pwa/manifest.webmanifest">
+    <script src="/js/functions.js"></script>
     <link rel="icon" type="image/png" href="./images/favicon-blue.png" sizes="192x192">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -296,6 +297,7 @@
                         style="margin-right: .5rem;">close</span>
                     <input class="input" type="text" v-model="input" @keyup="handleKeyboard"
                         placeholder="Shorten your links" ref="input">
+                    <input type="hidden" v-model="shortenedValue" ref="shortenedValue"/>
                 </div>
 
                 <div class="action-btn animate" v-if="state==='pre-cut'" @click="cut">
@@ -396,6 +398,7 @@
             darkMode: null,
             menu: false,
             input: null,
+            shortenedValue: null
         }),
         beforeMount() {
             this.darkMode = getTheme() === 'dark' ? true : false
@@ -426,17 +429,18 @@
                         break
                     default:
                         if (this.state === 'post-cut') this.state = 'pre-cut'
-                        console.log('🎹', event)
+                        // console.log('🎹', event)
                         break
                 }
 
             },
             copy() {
-                var Url = this.$refs.input;
+                var Url = this.$refs.shortenedValue;
                 Url.innerHTML = window.location.href;
-                console.log('input contains:', Url.innerHTML)
+                Url.setAttribute('type', 'text')
                 Url.select();
                 document.execCommand("copy");
+                Url.setAttribute('type', 'hidden')
                 document.getSelection().removeAllRanges() //deselect input
                 this.Notifications.clipboardSuccess.isShown = true
                 setTimeout(() => {
@@ -472,6 +476,7 @@
                         result = await response.json()
                         if (result.shortLink) {
                             this.state = 'post-cut'
+                            this.shortenedValue = 'https://curli.ir/' + result.shortLink
                             this.input = 'curli.ir/' + result.shortLink
                             this.Notifications.cutSuccess.isShown = true
                             setTimeout(() => {
@@ -495,7 +500,7 @@
                             }, 3000)
                         }
                     } catch (error) {
-                        console.log(error);                        
+                        // console.log(error);                        
                     }
                 } else {
                     this.Notifications.invalidUrl.isShown = true

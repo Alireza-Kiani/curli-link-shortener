@@ -1,4 +1,4 @@
-const cacheName = 'curli-v2';
+const cacheName = 'curli-v1';
 const staticAssets = [
     './js/functions.js',
     './images/favicon-blue.png',
