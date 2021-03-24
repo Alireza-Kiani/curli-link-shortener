@@ -74,12 +74,15 @@
         <div class="menu drawer" :class="menu ? 'menu-open' : ''">
             <div class="menu-content" style="padding: 1rem;">
                 <div class="description">
-                    <h1 @click="toggleTheme">Curli.ir</h1>
+                    <h1 @click="toggleTheme">CURLi.IR</h1>
                     <p class="about">
-                        A free, lightweight, open-source and simple URL shortener for everybody!
+                        A free, lightweight, unrestricted and simple URL shortener for everybody!
 
-                        This application is brought to you by Alireza Kiani and Mahdi Karimi with ❤
+                        This application is brought to you by Alireza Kiani and Mahdi Karimi
+
+                        Special thanks to Kiarash Sabahi
                     </p>
+                    <p>with ❤</p>
                     <div class="toggle toggle--daynight" @click="toggleTheme">
                         <input type="checkbox" id="toggle--daynight" v-model="notDarkMode" class="toggle--checkbox">
                         <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
