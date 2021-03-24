@@ -1,8 +1,9 @@
-import rateLimit from 'express-rate-limit';
+import rateLimit from 'express-slow-down';
 
+const { API_VERSION, MONITORING_SERVICE_PORT } = process.env;
 
-export default rateLimit({
-    windowMs: 60 * 1000, // 1 minute window
-    max: 10,
-    message: 'Too many requests under a minute, try again later'
+export default rateLimit({ // Default is 1 minute
+    delayAfter: 10,
+    delayMs: 500,
+    maxDelayMs: 2500
 });
