@@ -12,10 +12,10 @@ class ApiController {
         try {
             const { link } = req.body;
             if (!validator.isURL(link)) {
-                throw { code: 400, message: 'Please provide a valid URL' };
+                throw { code: 400, message: 'Please Provide A Valid URL' };
             }
             if (/^http:\/\/curli.ir|^https:\/\/curli.ir|^curli.ir|^http:\/\/www.curli.ir|^httpS:\/\/www.curli.ir|^www.curli.ir/gi.test(link)) {
-                throw { code: 400, message: 'It\'s already curlied!' };
+                throw { code: 400, message: 'It\'s Already CURLied!' };
             }
             const parsed_res = await ApiService.set(link);
             return res.status(200).send(parsed_res);
