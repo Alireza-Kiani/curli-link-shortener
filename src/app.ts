@@ -10,7 +10,7 @@ const Express = express();
 
 const { API_VERSION, MONITORING_SERVICE_PORT } = process.env;
 
-Express.use(helmet());
+Express.use(helmet.hidePoweredBy());
 
 Express.use(Useragent.express());
 
