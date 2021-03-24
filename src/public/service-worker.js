@@ -1,6 +1,5 @@
 const cacheName = 'curli-v1';
 const staticAssets = [
-    './',
     '/',
     './index.html',
     './js/functions.js',
