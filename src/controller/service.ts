@@ -31,7 +31,7 @@ class ApiService {
     }
 
     async getDb(url: string): Promise<Get> {
-        const alternative_raw_response = await fetch(`http://curli:${ALTERNATIVE_DB_PORT}/${url}`);
+        const alternative_raw_response = await fetch(`http://curli.ir:${ALTERNATIVE_DB_PORT}/${url}`);
         const parsed_alternative_response = await alternative_raw_response.json();
         return {
             originalLink: parsed_alternative_response.originalLink,
