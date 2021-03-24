@@ -1,5 +1,8 @@
 const cacheName = 'curli-v1';
 const staticAssets = [
+    './',
+    '/',
+    './index.html',
     './js/functions.js',
     './images/favicon-blue.png',
     './images/favicon-white.png',
