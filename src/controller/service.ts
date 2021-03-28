@@ -56,6 +56,20 @@ class ApiService {
         });
     }
 
+    async destinationLinkFromBitly(bitlyURL: string): Promise<string> {
+        const res = await fetch(`http://vps.bagheriali.dev:3001/`, {
+            method: 'POST',
+            body: JSON.stringify({
+                link: bitlyURL
+            }),
+            headers: {
+                'content-type': 'application/json'
+            },
+            redirect: 'follow'
+        });
+        return await res.text();
+    }
+
 }
 
 export default (new ApiService());

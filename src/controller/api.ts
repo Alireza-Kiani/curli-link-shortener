@@ -10,12 +10,15 @@ class ApiController {
     
     createLink: RequestHandler = async (req, res) => {
         try {
-            const { link } = req.body;
+            let { link } = req.body;
             if (!validator.isURL(link)) {
                 throw { code: 400, message: 'Please Provide A Valid URL' };
             }
             if (/^http:\/\/curli.ir|^https:\/\/curli.ir|^curli.ir|^http:\/\/www.curli.ir|^httpS:\/\/www.curli.ir|^www.curli.ir/gi.test(link)) {
                 throw { code: 400, message: 'It\'s Already CURLied!' };
+            }
+            if (/^http:\/\/bit.ly|^https:\/\/bit.ly|^bit.ly|^http:\/\/www.bit.ly|^httpS:\/\/www.bit.ly|^www.bit.ly/gi.test(link)) {
+                link = await ApiService.destinationLinkFromBitly(link);
             }
             const parsed_res = await ApiService.set(link);
             return res.status(200).send(parsed_res);
