@@ -51,7 +51,7 @@
         <div class="menu drawer" :class="menu ? 'menu-open' : ''">
             <div class="menu-content" style="padding: 1rem;">
                 <div class="description">
-                    <h1 @click="toggleTheme">CURLi.IR</h1>
+                    <h1>CURLi.IR</h1>
                     <p class="about">
                         A free, lightweight, unrestricted and simple URL shortener for everybody!
 
@@ -270,7 +270,7 @@
                     <div class="cloud"></div>
                 </div>
             </div>
-            <span class="material-icons menu-btn" @click="toggleMenu">{{menu ? 'close' : 'menu'}}</span>
+            <span class="material-icons menu-btn" style="width: 24px;" @click="toggleMenu">{{menu ? 'close' : 'menu'}}</span>
             <div class="input-container">
                 <div style="display: flex; flex-direction: row;align-items: center;">
                     <span @click="clearInput" class="material-icons remove-btn"
