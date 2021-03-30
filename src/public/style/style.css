@@ -263,4 +263,8 @@ body {
         width: 400px;
         height: 100vh;
     }
-}   
+}
+
+[v-cloak] {
+    display: none;
+}
