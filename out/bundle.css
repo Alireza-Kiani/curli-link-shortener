@@ -393,11 +393,16 @@ body {
 }
 
 [v-cloak] {
-  background-color: #1f1f3a;
+  display: none;
 }
 
-[v-cloak] > * {
-  display: none;
+.description > h1 {
+  margin-bottom: 0;
+  margin-top: 2rem;
+}
+
+.about {
+  line-height: 1.2;
 }
 
 :root {
@@ -1250,11 +1255,18 @@ body {
 }
 
 [v-cloak] {
-  background-color: #1f1f3a;
+  display: none;
 }
 
-[v-cloak] > * {
-  display: none;
+
+
+.description > h1 {
+  margin-bottom: 0;
+  margin-top: 2rem;
+}
+
+.about {
+  line-height: 1.2;
 }
 .toggle {
   display: block;

@@ -30,31 +30,31 @@ new Vue({
         Notifications: {
             invalidUrl: {
                 icon: 'error_outline',
-                text: 'Enter A Valid URL',
+                text: 'Enter a valid URL',
                 isShown: false,
                 classes: []
             },
             connectionError: {
                 icon: 'signal_wifi_statusbar_connected_no_internet_4',
-                text: 'Server Connection Error!',
+                text: 'Server connection error!',
                 isShown: false,
                 classes: []
             },
             connectionError: {
                 icon: 'signal_wifi_statusbar_connected_no_internet_4',
-                text: 'Server Connection Error!',
+                text: 'Server connection error!',
                 isShown: false,
                 classes: []
             },
             clipboardSuccess: {
                 icon: 'check',
-                text: 'Successfully Copied To Clipboard',
+                text: 'Successfully copied to clipboard!',
                 isShown: false,
                 classes: []
             },
             cutSuccess: {
                 icon: 'link',
-                text: 'Your Link Has Been Shortened',
+                text: 'Your link has been shortened.',
                 isShown: false,
                 classes: []
             }
